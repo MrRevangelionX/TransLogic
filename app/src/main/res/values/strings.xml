@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TransLogic</string>
+    <string name="uName">Nombre de Usuario:</string>
+    <string name="uPass">Contraseña</string>
+    <string name="txtIngresar">Entrar</string>
+    <string name="CompanyName">Global Developers SA de CV</string>
+</resources>
