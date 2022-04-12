@@ -53,7 +53,7 @@ public class CheckComplete extends AppCompatActivity {
     }
 
     public void reqCheckComplete(View view) {
-        String url = "http://192.168.140.15:8080/Proyectos/TransLogic/API/putComplete.php";
+        String url = MainActivity.HOST + "API/putComplete.php";
         String requisicion = txtReq.getText().toString();
 
         if(requisicion.trim().isEmpty()){

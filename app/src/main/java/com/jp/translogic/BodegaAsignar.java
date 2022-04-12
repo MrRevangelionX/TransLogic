@@ -41,7 +41,7 @@ public class BodegaAsignar extends AppCompatActivity {
 
     }
     public void reqAsignarBodega(View view) {
-        String url = "http://192.168.140.15:8080/Proyectos/TransLogic/API/putCreation.php";
+        String url = MainActivity.HOST + "API/putCreation.php";
         String asignaReq = txtRequerimiento.getText().toString();
         String asignaTrans = txtTransportista.getText().toString();
 

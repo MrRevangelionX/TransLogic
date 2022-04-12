@@ -53,7 +53,7 @@ public class CheckBodega extends AppCompatActivity {
     }
 
     public void reqCheckBodega(View view) {
-        String url = "http://192.168.140.15:8080/Proyectos/TransLogic/API/putBodega.php";
+        String url = MainActivity.HOST + "API/putBodega.php";
         String requisicion = txtReq.getText().toString();
 
         if(requisicion.trim().isEmpty()){

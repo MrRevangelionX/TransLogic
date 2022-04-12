@@ -31,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String uName, uPass, retName, retFullName;
     RequestQueue requestQueue;
 
-    public static final String USER = "UserName for actual USER";
-    public static final String NAME = "FullName for actual USER";
+    public static final String HOST = "http://http://168.243.90.35:8080/TransLogic/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void validateLogins(View view) throws JSONException {
-        String url = "http://192.168.140.15:8080/Proyectos/TransLogic/API/getLogin.php";
+        String url = MainActivity.HOST + "API/getLogin.php";
         uName = txtName.getText().toString();
         uPass = txtPass.getText().toString();
 

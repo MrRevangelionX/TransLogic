@@ -53,7 +53,7 @@ public class CheckLocation extends AppCompatActivity {
     }
 
     public void reqCheckLocation(View view) {
-        String url = "http://192.168.140.15:8080/Proyectos/TransLogic/API/putLocation.php";
+        String url = MainActivity.HOST + "API/putLocation.php";
         String requisicion = txtReq.getText().toString();
 
         if(requisicion.trim().isEmpty()){
