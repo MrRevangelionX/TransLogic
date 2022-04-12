@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String uName, uPass, retName, retFullName;
     RequestQueue requestQueue;
 
-    public static final String HOST = "http://168.243.90.35:8080/TransLogic/";
+    public static final String HOST = "http://192.168.140.15:8080/Proyectos/TransLogic/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
