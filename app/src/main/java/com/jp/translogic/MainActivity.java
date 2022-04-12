@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         if(uName.trim().isEmpty() || uPass.trim().isEmpty()){
             Toast.makeText(MainActivity.this, "Los campos NO deben estar vacíos", Toast.LENGTH_SHORT).show();
         }else {
-
 //##############################################################################################################
             JSONObject parametros = new JSONObject();
 
@@ -97,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             });
             requestQueue.add(jsonObjectRequest);
 //##############################################################################################################
-
         }
     }
 }
