@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         if(uName.trim().isEmpty() || uPass.trim().isEmpty()){
             Toast.makeText(MainActivity.this, "Los campos NO deben estar vacíos", Toast.LENGTH_SHORT).show();
         }else {
-//##############################################################################################################
             JSONObject parametros = new JSONObject();
 
             try {
@@ -78,10 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
                             //Enter into MENU
                             Toast.makeText(MainActivity.this, "Bienvenido/a: " + retFullName, Toast.LENGTH_LONG).show();
-
+                            guardarPreferencias();
                             Intent mnuMain = new Intent(MainActivity.this, MainMenu.class);
-                            mnuMain.putExtra(USER, retName);
-                            mnuMain.putExtra(NAME, retFullName);
                             startActivity(mnuMain);
 
                         }else{
@@ -95,7 +92,16 @@ public class MainActivity extends AppCompatActivity {
 
             });
             requestQueue.add(jsonObjectRequest);
-//##############################################################################################################
         }
+    }
+
+    public void guardarPreferencias(){
+        SharedPreferences preferencias = getSharedPreferences("credenciales", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferencias.edit();
+        String Usuario = retName;
+        String Nombre = retFullName;
+        editor.putString("USUARIO",Usuario);
+        editor.putString("NOMBRE", Nombre);
+        editor.commit();
     }
 }

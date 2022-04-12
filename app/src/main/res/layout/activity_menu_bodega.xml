@@ -15,14 +15,15 @@
         android:layout_marginTop="15dp"
         android:contentDescription="@string/CompanyName"/>
     <Button
-        android:id="@+id/btnAcarreos"
+        android:id="@+id/btnAsignarBodega"
         android:layout_width="350dp"
         android:layout_height="75dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
         android:text="ASIGNAR"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:onClick="loadAsignarBodega"/>
     <Button
         android:id="@+id/btnBodega"
         android:layout_width="350dp"
@@ -30,26 +31,26 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="Button"
+        android:text="CHECK BODEGA"
         android:textSize="25sp"
-        android:enabled="false"/>
+        android:onClick="loadCheckBodega"/>
     <Button
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="Button"
+        android:text="CHECK LOCACION"
         android:textSize="25sp"
-        android:enabled="false"/>
+        android:onClick="loadCheckLocation"/>
     <Button
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="Button"
+        android:text="CHECK COMPLETADO"
         android:textSize="25sp"
-        android:enabled="false"/>
+        android:onClick="loadCheckComplete"/>
 
 </LinearLayout>

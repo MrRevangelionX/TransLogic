@@ -3,6 +3,7 @@
     package="com.jp.translogic">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -12,8 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light">
         <activity
+            android:name=".CheckComplete"
+            android:exported="false"
+            android:parentActivityName=".MenuBodega"/>
+        <activity
+            android:name=".CheckLocation"
+            android:exported="false"
+            android:parentActivityName=".MenuBodega"/>
+        <activity
+            android:name=".CheckBodega"
+            android:exported="false"
+            android:parentActivityName=".MenuBodega" />
+        <activity
             android:name=".BodegaAsignar"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MenuBodega" />
         <activity
             android:name=".MenuBodega"
             android:exported="false"
