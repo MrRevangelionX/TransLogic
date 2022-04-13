@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +32,7 @@ public class CheckBodega extends AppCompatActivity {
         setContentView(R.layout.activity_check_bodega);
         txtReq = findViewById(R.id.txtRequerimiento);
         btnCheck = findViewById(R.id.btnCheckBodega);
+        btnCheck.setOnClickListener(view -> reqCheckBodega());
         requestQueue = Volley.newRequestQueue(this);
 
         cleanForm();
@@ -52,7 +52,7 @@ public class CheckBodega extends AppCompatActivity {
         name = preferencias.getString("NOMBRE","No existe la informacion");
     }
 
-    public void reqCheckBodega(View view) {
+    public void reqCheckBodega() {
         String url = MainActivity.HOST + "API/putBodega.php";
         String requisicion = txtReq.getText().toString();
 

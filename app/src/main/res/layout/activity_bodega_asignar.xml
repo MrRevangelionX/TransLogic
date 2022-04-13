@@ -69,7 +69,6 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
         android:text="ASIGNAR"
-        android:textSize="25sp"
-        android:onClick="reqAsignarBodega"/>
+        android:textSize="25sp"/>
 
 </LinearLayout>

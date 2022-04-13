@@ -1,28 +1,29 @@
 package com.jp.translogic;
 
+import static android.Manifest.permission.INTERNET;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_SETTINGS;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     String uName, uPass, retName, retFullName;
     RequestQueue requestQueue;
 
-    public static final String HOST = "http://192.168.140.15:8080/Proyectos/TransLogic/";
+    //public static final String HOST = "http://192.168.140.15:8080/Proyectos/TransLogic/";
+    public static final String HOST = "http://168.243.90.35:8080/TransLogic/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,13 @@ public class MainActivity extends AppCompatActivity {
         btnEntrar = findViewById(R.id.btnIngresar);
         requestQueue = Volley.newRequestQueue(this);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[] {INTERNET,WRITE_EXTERNAL_STORAGE,WRITE_SETTINGS},100);
+        }
+        btnEntrar.setOnClickListener(view -> validateLogins());
     }
 
-    public void validateLogins(View view) throws JSONException {
+    public void validateLogins(){
         String url = MainActivity.HOST + "API/getLogin.php";
         uName = txtName.getText().toString();
         uPass = txtPass.getText().toString();
@@ -52,18 +58,17 @@ public class MainActivity extends AppCompatActivity {
         if(uName.trim().isEmpty() || uPass.trim().isEmpty()){
             Toast.makeText(MainActivity.this, "Los campos NO deben estar vacíos", Toast.LENGTH_SHORT).show();
         }else {
-            JSONObject parametros = new JSONObject();
+            JSONObject data = new JSONObject();
 
             try {
-                parametros.put("uID", uName);
-                parametros.put("uPD", uPass);
+                data.put("uID", uName);
+                data.put("uPD", uPass);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            //Toast.makeText(MainActivity.this, "Checkeando Informacion de Usuario", Toast.LENGTH_LONG).show();
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                    url, parametros, response -> {
+            JsonObjectRequest jRequest;
+            jRequest = new JsonObjectRequest(Request.Method.POST, url, data, response -> {
                 try {
                     JSONArray jsonArray = response.getJSONArray("login");
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -71,15 +76,12 @@ public class MainActivity extends AppCompatActivity {
                         retName = jsonObject.optString("user");
                         retFullName = jsonObject.optString("name");
                         boolean retExiste = jsonObject.optBoolean("exist");
-
                         if(retExiste){
-
                             //Enter into MENU
-                            Toast.makeText(MainActivity.this, "Bienvenido/a: " + retFullName, Toast.LENGTH_LONG).show();
                             guardarPreferencias();
+                            Toast.makeText(MainActivity.this, "Bienvenido/a: " + retFullName, Toast.LENGTH_LONG).show();
                             Intent mnuMain = new Intent(MainActivity.this, MainMenu.class);
                             startActivity(mnuMain);
-
                         }else{
                             Toast.makeText(MainActivity.this, "El usuario " + uName + " o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
                         }
@@ -87,10 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }, error -> {
-
-            });
-            requestQueue.add(jsonObjectRequest);
+            }, error -> Toast.makeText(MainActivity.this, "Ha ocurrido algun error mientras se consultaba", Toast.LENGTH_SHORT).show());
+            requestQueue.add(jRequest);
         }
     }
 
@@ -101,6 +101,6 @@ public class MainActivity extends AppCompatActivity {
         String Nombre = retFullName;
         editor.putString("USUARIO",Usuario);
         editor.putString("NOMBRE", Nombre);
-        editor.commit();
+        editor.apply();
     }
 }

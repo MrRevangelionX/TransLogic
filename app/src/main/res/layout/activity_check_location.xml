@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +21,7 @@
         android:background="@color/black"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:text="CHECKPOINT LOCACION"
+        android:text="@string/checkpoint_locacion"
         android:textSize="25sp"/>
 
     <TextView
@@ -31,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:textAlignment="center"
-        android:text="Req. de Material:"
+        android:text="@string/req_de_material"
         android:textSize="25sp"/>
     <EditText
         android:id="@+id/txtRequerimiento"
@@ -41,17 +40,17 @@
         android:gravity="center"
         android:textSize="20sp"
         android:inputType="text"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
 
     <Button
-        android:id="@+id/btnCheckBodega"
+        android:id="@+id/btnCheckLocation"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="50dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="CHECKPOINT"
-        android:textSize="25sp"
-        android:onClick="reqCheckLocation"/>
+        android:text="@string/checkpoint"
+        android:textSize="25sp"/>
 
 </LinearLayout>

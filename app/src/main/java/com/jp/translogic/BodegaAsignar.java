@@ -1,11 +1,11 @@
 package com.jp.translogic;
 
+import static android.widget.Toast.makeText;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,19 +34,32 @@ public class BodegaAsignar extends AppCompatActivity {
         txtRequerimiento = findViewById(R.id.txtRequerimiento);
         txtTransportista = findViewById(R.id.txtTransporte);
         btnAsignarBodega = findViewById(R.id.btnAsignarBodega);
-
+        btnAsignarBodega.setOnClickListener(view -> loadAsignarBodega());
         cargarPreferencias();
-
         cleanForm();
 
     }
-    public void reqAsignarBodega(View view) {
+
+    public void cleanForm(){
+        txtRequerimiento.setText("");
+        txtTransportista.setText("");
+        txtRequerimiento.requestFocus();
+    }
+
+    public void cargarPreferencias(){
+        SharedPreferences preferencias = getSharedPreferences("credenciales", MODE_PRIVATE);
+
+        user = preferencias.getString("USUARIO","No existe la informacion");
+        name = preferencias.getString("NOMBRE","No existe la informacion");
+    }
+
+    public void loadAsignarBodega() {
         String url = MainActivity.HOST + "API/putCreation.php";
         String asignaReq = txtRequerimiento.getText().toString();
         String asignaTrans = txtTransportista.getText().toString();
 
         if(asignaReq.trim().isEmpty() || asignaTrans.trim().isEmpty()){
-            Toast.makeText(this, "Los campos NO deben estar vacíos", Toast.LENGTH_SHORT).show();
+            makeText(this, "Los campos NO deben estar vacíos", Toast.LENGTH_SHORT).show();
         }else{
             JSONObject parametros = new JSONObject();
 
@@ -69,32 +82,18 @@ public class BodegaAsignar extends AppCompatActivity {
                         String retFecha = jsonObject.optString("fecha_asignado");
 
                         if(retOrden.equals("ERROR")){
-                            Toast.makeText(this, "HUBO UN ERROR EN EL INGRESO DE LA INFORMACION \n" + retFecha , Toast.LENGTH_SHORT).show();
+                            makeText(this, "HUBO UN ERROR EN EL INGRESO DE LA INFORMACION \n" + retFecha , Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(this, "SE ASIGNO LA ORDEN: " + retOrden + "\n AL TRANSPORTE: " + retTransporte + "\n FECHA: " + retFecha, Toast.LENGTH_SHORT).show();
+                            makeText(this, "SE ASIGNO LA ORDEN: " + retOrden + "\n AL TRANSPORTE: " + retTransporte + "\n FECHA: " + retFecha, Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }, error -> {
-                Toast.makeText(this, "NO ENTRO EN LA PETICION", Toast.LENGTH_SHORT).show();
-            });
+            }, error -> makeText(this, "NO ENTRO EN LA PETICION", Toast.LENGTH_SHORT).show());
             requestQueue.add(jsonObjectRequest);
             cleanForm();
         }
-    }
 
-    public void cleanForm(){
-        txtRequerimiento.setText("");
-        txtTransportista.setText("");
-        txtRequerimiento.requestFocus();
-    }
-
-    public void cargarPreferencias(){
-        SharedPreferences preferencias = getSharedPreferences("credenciales", MODE_PRIVATE);
-
-        user = preferencias.getString("USUARIO","No existe la informacion");
-        name = preferencias.getString("NOMBRE","No existe la informacion");
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,36 +20,34 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="ASIGNAR"
-        android:textSize="25sp"
-        android:onClick="loadAsignarBodega"/>
+        android:text="@string/asignar"
+        android:textSize="25sp"/>
     <Button
-        android:id="@+id/btnBodega"
+        android:id="@+id/btnCheckBodega"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="CHECK BODEGA"
-        android:textSize="25sp"
-        android:onClick="loadCheckBodega"/>
+        android:text="@string/check_bodega"
+        android:textSize="25sp"/>
     <Button
+        android:id="@+id/btnCheckLocation"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="CHECK LOCACION"
-        android:textSize="25sp"
-        android:onClick="loadCheckLocation"/>
+        android:text="@string/check_locacion"
+        android:textSize="25sp"/>
     <Button
+        android:id="@+id/btnCheckComplete"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/black"
-        android:text="CHECK COMPLETADO"
-        android:textSize="25sp"
-        android:onClick="loadCheckComplete"/>
+        android:text="@string/check_completado"
+        android:textSize="25sp"/>
 
 </LinearLayout>

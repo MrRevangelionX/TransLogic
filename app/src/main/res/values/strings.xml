@@ -4,4 +4,14 @@
     <string name="uPass">Contraseña</string>
     <string name="txtIngresar">Entrar</string>
     <string name="CompanyName">Global Developers SA de CV</string>
+    <string name="acarreos">ACARREOS</string>
+    <string name="mnuBodega">VIAJES DE BODEGA</string>
+    <string name="btnEmpty">Button</string>
+    <string name="asignar">ASIGNAR</string>
+    <string name="check_bodega">CHECK BODEGA</string>
+    <string name="check_locacion">CHECK LOCACION</string>
+    <string name="check_completado">CHECK COMPLETADO</string>
+    <string name="checkpoint_locacion">CHECKPOINT LOCACION</string>
+    <string name="req_de_material">Req. de Material:</string>
+    <string name="checkpoint">CHECKPOINT</string>
 </resources>

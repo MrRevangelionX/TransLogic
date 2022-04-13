@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,7 +31,8 @@ public class CheckLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_location);
         txtReq = findViewById(R.id.txtRequerimiento);
-        btnCheck = findViewById(R.id.btnCheckBodega);
+        btnCheck = findViewById(R.id.btnCheckLocation);
+        btnCheck.setOnClickListener(view -> reqCheckLocation());
         requestQueue = Volley.newRequestQueue(this);
 
         cleanForm();
@@ -52,7 +52,7 @@ public class CheckLocation extends AppCompatActivity {
         name = preferencias.getString("NOMBRE","No existe la informacion");
     }
 
-    public void reqCheckLocation(View view) {
+    public void reqCheckLocation() {
         String url = MainActivity.HOST + "API/putLocation.php";
         String requisicion = txtReq.getText().toString();
 
